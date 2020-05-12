@@ -10,7 +10,7 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   routes: [
-    { path: "/", name: "Home", component: Home },
+    { path: "/", component: Home },
     { path: "/portfoly", name: "Portfoly", component: Portfoly },
     { path: "/stocks", name: "Stocks", component: Stocks },
   ],
