@@ -37,4 +37,8 @@ body,
 .md-field {
   margin: 0 !important;
 }
+
+.md-button.md-theme-default.md-raised {
+  margin: 0 !important;
+}
 </style>

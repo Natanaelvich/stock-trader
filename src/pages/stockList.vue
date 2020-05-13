@@ -1,10 +1,14 @@
 <template>
   <div class="stock-list">
-    <dic class="container">
+    <div class="container">
       <div class="cards">
-        <Stock v-for="stock in stocks" :key="stock.id" />
+        <Stock
+          v-for="stock in stocks"
+          :key="stock.id"
+          :stock="stock"
+        />
       </div>
-    </dic>
+    </div>
   </div>
 </template>
 
@@ -42,12 +46,18 @@ export default {
   margin-top: 40px;
   padding: 0 40px;
 }
+
+@media (max-width: 860px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 383px) {
   .cards {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
 /* animation slide right */
 @keyframes slide-right {
   0% {

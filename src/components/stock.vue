@@ -1,24 +1,61 @@
 <template>
   <div class="box">
     <div class="title">
-      <strong>Nome <small>(Preço : PRECO)</small></strong>
+      <strong
+        >{{ stock.name }}
+        <small>(Preço : {{ stock.price }})</small></strong
+      >
     </div>
     <div class="form">
       <form>
         <div>
           <md-field>
             <label>Quantidade</label>
-            <md-input type="number"></md-input>
+            <md-input
+              min="0"
+              step="any"
+              v-model.number="quantity"
+              type="number"
+            ></md-input>
           </md-field>
         </div>
-        <button>COMPRAR</button>
+        <md-button
+          :disabled="quantity <= 0 || !Number.isInteger(quantity)"
+          @click.prevent.stop="buyStock"
+          class="md-raised md-primary"
+          >COMPRAR</md-button
+        >
       </form>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    stock: Object,
+  },
+
+  data() {
+    return {
+      quantity: 0,
+    };
+  },
+
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity,
+      };
+
+      this.quantity = 0;
+
+      return order;
+    },
+  },
+};
 </script>
 
 <style>
@@ -38,6 +75,7 @@ export default {};
 .box .form form {
   display: flex;
   justify-content: center;
+  align-items: baseline;
   flex: 1;
   padding: 0 5px;
 }
@@ -45,11 +83,11 @@ export default {};
 .form form div {
   flex: 1;
 }
+.form form button:disabled {
+  background: #ddd !important;
+}
 .form form button {
-  border: 0;
-  background: green;
-  color: #fff;
-  padding: 3px 8px;
-  text-align: center;
+  display: flex;
+  background: green !important;
 }
 </style>
