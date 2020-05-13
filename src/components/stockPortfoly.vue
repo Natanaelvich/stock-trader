@@ -3,8 +3,9 @@
     <div class="title">
       <strong
         >{{ stock.name }}
-        <small>(Preço : {{ stock.price }})</small></strong
-      >
+        <small>(Preço : {{ stock.price }})</small>
+        <small>(Quantidade : {{ stock.quantity }})</small>
+      </strong>
     </div>
     <div class="form">
       <form>
@@ -21,7 +22,7 @@
         </div>
         <md-button
           :disabled="quantity <= 0 || !Number.isInteger(quantity)"
-          @click.prevent.stop="buyStock"
+          @click.prevent.stop="methodo"
           class="md-raised md-primary"
           >COMPRAR</md-button
         >
@@ -43,20 +44,7 @@ export default {
     };
   },
 
-  methods: {
-    buyStock() {
-      const order = {
-        stockId: this.stock.id,
-        stockPrice: this.stock.price,
-        quantity: this.quantity,
-      };
-
-      this.$store.dispatch("buyStock", order);
-      this.quantity = 0;
-
-      return order;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -66,15 +54,9 @@ export default {
   margin: 10px;
 }
 .box .title {
-  background: green;
+  background: orangered;
   padding: 10px 5px;
   color: #fff;
-}
-.box .title strong {
-  font-weight: bold;
-}
-.box .title strong small {
-  font-weight: normal;
 }
 
 .box .form {
@@ -90,5 +72,12 @@ export default {
 
 .form form div {
   flex: 1;
+}
+.form form button:disabled {
+  background: #ddd !important;
+}
+.form form button {
+  display: flex;
+  background: orangered !important;
 }
 </style>

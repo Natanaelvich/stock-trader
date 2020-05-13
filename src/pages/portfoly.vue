@@ -1,23 +1,25 @@
 <template>
   <div class="stock-list">
-    <div class="container">
-      <div class="cards">
-        <Stock
-          v-for="stock in stocks"
-          :key="stock.id"
-          :stock="stock"
-          :methodo="sellStock"
-        />
-      </div>
+    <div class="no-sells" v-if="stocks.length === 0">
+      <img src="../assets/empty.svg" alt="empty" />
+      <span class="md-display-2">Você não comprou nenhuma ação</span>
+    </div>
+    <div class="cards" v-if="stocks.length > 0">
+      <StockPortfoly
+        v-for="stock in stocks"
+        :key="stock.id"
+        :stock="stock"
+        :methodo="sellStock"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Stock from "../components/stock";
+import StockPortfoly from "../components/stockPortfoly";
 export default {
   components: {
-    Stock,
+    StockPortfoly,
   },
 
   methods: {
@@ -37,7 +39,7 @@ export default {
 
   computed: {
     stocks() {
-      return this.$store.getters.stocks;
+      return this.$store.getters.stocksPortfoly;
     },
   },
 };
@@ -47,6 +49,18 @@ export default {
 .stock-list {
   animation-name: slide-right;
   animation-duration: 0.5s;
+  height: 100%;
+}
+
+.no-sells {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.no-sells img {
+  height: 400px;
 }
 
 .cards {

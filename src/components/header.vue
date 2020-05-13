@@ -5,7 +5,11 @@
       <span>Trader</span>
     </div>
     <div class="buttons">
-      <button @click="navigateTo('/')">INICIO</button>
+      <button>
+        <router-link to="/">
+          INICIO
+        </router-link>
+      </button>
       <button @click="navigateTo('portfoly')">PORTIFOLIO</button>
       <button @click="navigateTo('stocks')">AÇÕES</button>
     </div>
@@ -77,6 +81,10 @@ button {
 }
 button:hover {
   background: #ddd;
+}
+button a {
+  text-decoration: none !important;
+  color: #444 !important;
 }
 
 .options {

@@ -45,4 +45,10 @@ body,
 .md-button.md-theme-default.md-raised {
   margin: 0 !important;
 }
+
+:root {
+  --md-theme-default-primary: green !important;
+  --md-theme-default-accent: #ff5252;
+  --md-theme-default-theme: light;
+}
 </style>
