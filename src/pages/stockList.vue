@@ -6,6 +6,7 @@
           v-for="stock in stocks"
           :key="stock.id"
           :stock="stock"
+          :methodo="buyStock"
         />
       </div>
     </div>
@@ -19,8 +20,19 @@ export default {
     Stock,
   },
 
-  data() {
-    return {};
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity,
+      };
+
+      this.$store.dispatch("buyStock", order);
+      this.quantity = 0;
+
+      return order;
+    },
   },
 
   computed: {

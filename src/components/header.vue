@@ -29,7 +29,11 @@
 export default {
   methods: {
     navigateTo(page) {
-      this.$router.push(`/${page}`);
+      this.$router.push(`/${page}`).catch((error) => {
+        if (error.name != "NavigationDuplicated") {
+          throw error;
+        }
+      });
     },
   },
 };

@@ -21,7 +21,7 @@
         </div>
         <md-button
           :disabled="quantity <= 0 || !Number.isInteger(quantity)"
-          @click.prevent.stop="buyStock"
+          @click.prevent.stop="methodo"
           class="md-raised md-primary"
           >COMPRAR</md-button
         >
@@ -34,6 +34,7 @@
 export default {
   props: {
     stock: Object,
+    methodo: Function,
   },
 
   data() {
@@ -42,19 +43,7 @@ export default {
     };
   },
 
-  methods: {
-    buyStock() {
-      const order = {
-        stockId: this.stock.id,
-        stockPrice: this.stock.price,
-        quantity: this.quantity,
-      };
-
-      this.quantity = 0;
-
-      return order;
-    },
-  },
+  methods: {},
 };
 </script>
 
