@@ -9,7 +9,7 @@
     <div class="form">
       <form>
         <div>
-          <md-field>
+          <md-field :class="messageClass">
             <label>Quantidade</label>
             <md-input
               min="0"
@@ -17,14 +17,20 @@
               v-model.number="quantity"
               type="number"
             ></md-input>
+            <span class="md-error">Seu saldo é Insuficiente</span>
           </md-field>
         </div>
         <md-button
-          :disabled="quantity <= 0 || !Number.isInteger(quantity)"
+          :disabled="
+            quantity <= 0 ||
+              !Number.isInteger(quantity) ||
+              insufficientFunds
+          "
           @click.prevent.stop="buyStock"
           class="md-raised md-primary"
-          >COMPRAR</md-button
         >
+          {{ insufficientFunds ? "Insuficiente" : "Comprar" }}
+        </md-button>
       </form>
     </div>
   </div>
@@ -41,6 +47,22 @@ export default {
     return {
       quantity: 0,
     };
+  },
+
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+
+    insufficientFunds() {
+      return this.stock.price * this.quantity >= this.funds;
+    },
+
+    messageClass() {
+      return {
+        "md-invalid": this.insufficientFunds,
+      };
+    },
   },
 
   methods: {
@@ -64,6 +86,8 @@ export default {
 .box {
   background: #ddd;
   margin: 10px;
+
+  box-shadow: 2px 8px 21px -1px rgba(168, 168, 168, 1);
 }
 .box .title {
   background: green;

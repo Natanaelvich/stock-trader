@@ -10,7 +10,7 @@
     <div class="form">
       <form>
         <div>
-          <md-field>
+          <md-field :class="messageClass">
             <label>Quantidade</label>
             <md-input
               min="0"
@@ -18,14 +18,20 @@
               v-model.number="quantity"
               type="number"
             ></md-input>
+            <span class="md-error">Ultrapassa a quantidade</span>
           </md-field>
         </div>
         <md-button
-          :disabled="quantity <= 0 || !Number.isInteger(quantity)"
-          @click.prevent.stop="methodo"
+          :disabled="
+            quantity <= 0 ||
+              !Number.isInteger(quantity) ||
+              insufficientQuantity
+          "
+          @click.prevent.stop="sellStock"
           class="md-raised md-primary"
-          >COMPRAR</md-button
         >
+          {{ insufficientQuantity ? "Insuficiente" : "Vender" }}
+        </md-button>
       </form>
     </div>
   </div>
@@ -35,7 +41,6 @@
 export default {
   props: {
     stock: Object,
-    methodo: Function,
   },
 
   data() {
@@ -44,7 +49,31 @@ export default {
     };
   },
 
-  methods: {},
+  computed: {
+    insufficientQuantity() {
+      return this.quantity > this.stock.quantity;
+    },
+    messageClass() {
+      return {
+        "md-invalid": this.insufficientQuantity,
+      };
+    },
+  },
+
+  methods: {
+    sellStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity,
+      };
+
+      this.$store.dispatch("sellStock", order);
+      this.quantity = 0;
+
+      return order;
+    },
+  },
 };
 </script>
 

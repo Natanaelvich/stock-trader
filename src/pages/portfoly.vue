@@ -9,7 +9,6 @@
         v-for="stock in stocks"
         :key="stock.id"
         :stock="stock"
-        :methodo="sellStock"
       />
     </div>
   </div>
@@ -20,21 +19,6 @@ import StockPortfoly from "../components/stockPortfoly";
 export default {
   components: {
     StockPortfoly,
-  },
-
-  methods: {
-    sellStock() {
-      const order = {
-        stockId: this.stock.id,
-        stockPrice: this.stock.price,
-        quantity: this.quantity,
-      };
-
-      this.$store.dispatch("sellStock", order);
-      this.quantity = 0;
-
-      return order;
-    },
   },
 
   computed: {
