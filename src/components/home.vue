@@ -13,9 +13,20 @@
       </md-card>
     </div>
 
+    <div class="card">
+      <md-card class="md-accent">
+        <md-card-header>
+          <div class="md-title">
+            <md-icon class="md-accent">calendar_today</md-icon>
+            Clique em 'Finalizar Dia' para iniciar um novo dia!
+          </div>
+        </md-card-header>
+      </md-card>
+    </div>
+
     <div class="funds">
       <strong>
-        Saldo :
+        Seu Saldo :
       </strong>
       <span>
         {{ funds }}
@@ -58,10 +69,11 @@ export default {
 
 .funds strong {
   font-size: 30px;
+  color: rgba(0, 0, 0, 0.54);
 }
 .funds span {
   font-size: 25px;
-  color: #666;
+  color: #999;
 }
 /* animation slide right */
 @keyframes slide-right {

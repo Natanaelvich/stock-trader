@@ -25,6 +25,12 @@
           </md-menu-content>
         </md-menu>
       </div>
+      <div class="funds">
+        <strong>
+          Seu Saldo :
+        </strong>
+        <span> {{ funds }}R$ </span>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +44,12 @@ export default {
           throw error;
         }
       });
+    },
+  },
+
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
     },
   },
 };
@@ -92,5 +104,19 @@ button a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.funds {
+  background: #ddd;
+  padding: 5px;
+  border-radius: 8px;
+}
+.funds strong {
+  font-size: 20px;
+  color: #444;
+}
+.funds span {
+  font-size: 15px;
+  color: #666;
 }
 </style>
