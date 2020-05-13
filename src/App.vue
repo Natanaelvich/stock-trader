@@ -11,6 +11,10 @@ export default {
   components: {
     Header,
   },
+
+  created() {
+    this.$store.dispatch("initStocks");
+  },
 };
 </script>
 
