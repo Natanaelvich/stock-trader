@@ -33,4 +33,8 @@ body,
   background: #f5f5f5;
   color: #2c3e50;
 }
+
+.md-field {
+  margin: 0 !important;
+}
 </style>

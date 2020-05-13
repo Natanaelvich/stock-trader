@@ -5,7 +5,12 @@
     </div>
     <div class="form">
       <form>
-        <input type="text" />
+        <div>
+          <md-field>
+            <label>Quantidade</label>
+            <md-input type="number"></md-input>
+          </md-field>
+        </div>
         <button>COMPRAR</button>
       </form>
     </div>
@@ -28,7 +33,7 @@ export default {};
 }
 
 .box .form {
-  padding: 20px 0;
+  padding: 20px 10px;
 }
 .box .form form {
   display: flex;
@@ -36,11 +41,9 @@ export default {};
   flex: 1;
   padding: 0 5px;
 }
-.form form input {
+
+.form form div {
   flex: 1;
-  border: 0;
-  border-bottom: 2px solid #fff;
-  background: transparent;
 }
 .form form button {
   border: 0;
