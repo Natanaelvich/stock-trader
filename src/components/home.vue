@@ -55,6 +55,7 @@ export default {
 
 .card {
   margin-top: 20px;
+  box-shadow: 2px 8px 21px -1px rgba(168, 168, 168, 1);
 }
 .card div {
   margin: 0 !important;

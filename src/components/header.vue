@@ -14,14 +14,22 @@
       <button @click="navigateTo('stocks')">AÇÕES</button>
     </div>
     <div class="options">
-      <button>Finalizar Dia</button>
+      <button @click="endDay">Finalizar Dia</button>
       <div>
         <md-menu md-size="medium" md-align-trigger>
           <md-button md-menu-trigger>Salvar & Carregar</md-button>
 
           <md-menu-content>
-            <md-menu-item>Salvar</md-menu-item>
-            <md-menu-item>Carregar</md-menu-item>
+            <md-menu-item>
+              <button>
+                Salvar
+              </button>
+            </md-menu-item>
+            <md-menu-item>
+              <button>
+                Carregar
+              </button>
+            </md-menu-item>
           </md-menu-content>
         </md-menu>
       </div>
@@ -39,6 +47,12 @@
 import { formatPrice } from "@/utils/format";
 
 export default {
+  computed: {
+    funds() {
+      return formatPrice(this.$store.getters.funds);
+    },
+  },
+
   methods: {
     navigateTo(page) {
       this.$router.push(`/${page}`).catch((error) => {
@@ -47,11 +61,9 @@ export default {
         }
       });
     },
-  },
 
-  computed: {
-    funds() {
-      return formatPrice(this.$store.getters.funds);
+    endDay() {
+      this.$store.dispatch("radomPriceStocks");
     },
   },
 };
@@ -59,7 +71,7 @@ export default {
 
 <style scoped>
 .header {
-  padding: 10px 0 10px 10px;
+  padding: 10px 10px;
   box-shadow: 0px 3px 3px 0px rgba(173, 173, 173, 1);
   display: flex;
   align-items: center;
@@ -92,6 +104,7 @@ button {
   border-radius: 10px;
   color: #444;
   font-weight: bold;
+  cursor: pointer;
 }
 button:hover {
   background: #ddd;

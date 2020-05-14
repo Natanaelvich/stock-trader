@@ -7,6 +7,13 @@ export default {
     setStocks(state, stocks) {
       state.stocks = stocks;
     },
+    radomPriceStocks(state) {
+      state.stocks.forEach((stock) => {
+        stock.price = Math.round(
+          stock.price * (1 + Math.random() - 0.45),
+        );
+      });
+    },
   },
 
   actions: {
@@ -21,6 +28,10 @@ export default {
         { id: 3, name: "Apple", price: 330 },
         { id: 4, name: "Twitter", price: 440 },
       ]);
+    },
+
+    radomPriceStocks({ commit }) {
+      commit("radomPriceStocks");
     },
   },
 

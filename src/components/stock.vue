@@ -3,7 +3,7 @@
     <div class="title">
       <strong
         >{{ stock.name }}
-        <small>(Preço : {{ stock.price }})</small></strong
+        <small>(Preço : {{ priceFormat }})</small></strong
       >
     </div>
     <div class="form">
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { formatPrice } from "@/utils/format";
 export default {
   props: {
     stock: Object,
@@ -56,6 +57,10 @@ export default {
 
     insufficientFunds() {
       return this.stock.price * this.quantity >= this.funds;
+    },
+
+    priceFormat() {
+      return formatPrice(this.stock.price);
     },
 
     messageClass() {
@@ -86,7 +91,6 @@ export default {
 .box {
   background: #ddd;
   margin: 10px;
-
   box-shadow: 2px 8px 21px -1px rgba(168, 168, 168, 1);
 }
 .box .title {
