@@ -1,4 +1,10 @@
-# stock-trader
+<h1 align='center'> Stock Trader 💵🚗 </h1>
+
+### stock trader make in vuejs 💚💚
+
+## Gifs
+
+![Stock_Trader](https://user-images.githubusercontent.com/52014318/81882764-e7b93200-9569-11ea-9938-b23852e7a8b1.gif)
 
 ## Project setup
 ```
