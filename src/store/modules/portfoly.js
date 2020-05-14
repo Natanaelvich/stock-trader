@@ -1,3 +1,5 @@
+import Vue from "vue";
+
 export default {
   state: {
     funds: 10000,
@@ -37,11 +39,31 @@ export default {
 
       state.funds += stockPrice * quantity;
     },
+
+    setPortfoly(state, portfoly) {
+      (state.funds = portfoly.funds),
+        (state.stocksPortfoly = portfoly.stocksPortfoly
+          ? portfoly.stocksPortfoly
+          : []);
+    },
+
+    setFunds(state, funds) {
+      state.funds = funds;
+    },
   },
 
   actions: {
     sellStock({ commit }, order) {
       commit("sellStock", order);
+    },
+    setFunds({ commit }) {
+      Vue.prototype.$http("data.json").then((resp) => {
+        const data = resp.data;
+
+        if (data) {
+          commit("setFunds", data.funds);
+        }
+      });
     },
   },
 

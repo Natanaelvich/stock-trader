@@ -21,12 +21,12 @@
 
           <md-menu-content>
             <md-menu-item>
-              <button>
+              <button @click="saveData">
                 Salvar
               </button>
             </md-menu-item>
             <md-menu-item>
-              <button>
+              <button @click="loadData">
                 Carregar
               </button>
             </md-menu-item>
@@ -47,6 +47,9 @@
 import { formatPrice } from "@/utils/format";
 
 export default {
+  created() {
+    this.$store.dispatch("setFunds");
+  },
   computed: {
     funds() {
       return formatPrice(this.$store.getters.funds);
@@ -64,6 +67,16 @@ export default {
 
     endDay() {
       this.$store.dispatch("radomPriceStocks");
+    },
+
+    saveData() {
+      const { funds, stocksPortfoly, stocks } = this.$store.getters;
+
+      this.$http.put("data.json", { funds, stocksPortfoly, stocks });
+    },
+
+    loadData() {
+      this.$store.dispatch("loadData");
     },
   },
 };
