@@ -1,4 +1,6 @@
-# stock-trader
+<h1 align='center'> Stock Trader 💵🚗 </h1>
+
+### stock trader make in vuejs 💚💚
 
 ## Gifs
 
