@@ -29,13 +29,15 @@
         <strong>
           Seu Saldo :
         </strong>
-        <span> {{ funds }}R$ </span>
+        <span> {{ funds }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { formatPrice } from "@/utils/format";
+
 export default {
   methods: {
     navigateTo(page) {
@@ -49,7 +51,7 @@ export default {
 
   computed: {
     funds() {
-      return this.$store.getters.funds;
+      return formatPrice(this.$store.getters.funds);
     },
   },
 };

@@ -25,10 +25,10 @@
     </div>
 
     <div class="funds">
-      <strong>
+      <span class="md-display-1">
         Seu Saldo :
-      </strong>
-      <span>
+      </span>
+      <span class="md-display-1">
         {{ funds }}
       </span>
     </div>
@@ -36,10 +36,11 @@
 </template>
 
 <script>
+import { formatPrice } from "@/utils/format";
 export default {
   computed: {
     funds() {
-      return this.$store.getters.funds;
+      return formatPrice(this.$store.getters.funds);
     },
   },
 };
@@ -67,14 +68,6 @@ export default {
   margin-top: 20px;
 }
 
-.funds strong {
-  font-size: 30px;
-  color: rgba(0, 0, 0, 0.54);
-}
-.funds span {
-  font-size: 25px;
-  color: #999;
-}
 /* animation slide right */
 @keyframes slide-right {
   0% {
